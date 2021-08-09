@@ -48,12 +48,6 @@ options {
 <%- if @tkey_domain -%>
         tkey-domain "<%= @tkey_domain %>";
 <%- end -%>
-
-	<%- if @named_option_lines -%>
-		<%- @named_option_lines.each do |option_line| -%>
-	<%=option_line%>
-		<%- end -%>
-	<%- end -%>
 };
 <%- if @include_local -%>
 
