@@ -28,7 +28,10 @@ options {
 <%- end -%>
 	auth-nxdomain <%= @auth_nxdomain ? 'yes' : 'no' %>;
 	listen-on-v6 { any; };
-	dnssec-enable <%= @dnssec ? 'yes' : 'no' %>;
+<%- major = @facts.dig('os', 'release', 'major')
+    if @facts.dig('os', 'family') == 'Debian' && major && major.to_i < 13 -%>
+    dnssec-enable <%= @dnssec ? 'yes' : 'no' %>;
+<%- end -%>
 <%- if @filter_ipv6 -%>
 	filter-aaaa-on-v4 yes;
 <%- end -%>
